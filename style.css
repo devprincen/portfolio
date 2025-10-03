@@ -6,59 +6,164 @@
 }
 
 body {
+    /*background: #404b61;*/
     background: #1f242d;
     color: #fff;
+    height: 100%;
 }
 
 .header {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    padding: 20px 10px;
-    background: transparent;
+    width: 180px;
+    background-color: #1f242d;
+    transition: 0.4s;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
+    padding: 20px 0;
     z-index: 100;
 }
 
-.logo {
-    font-size: 25px;
+#menu-toggle:checked ~ .header {
+    background-color: #fff;
+}
+
+.header .logo {
+    font-size: 24px;
+    padding-left: 40px;
     color: #fff;
-    text-decoration: none;
-    font-weight: 600;
-    cursor: default;
+    font-weight: 800;
+    text-align: center;
+}   
+
+#menu-toggle {
+    display: none;
+}
+
+.slide {
+    height: 100%;
+    width: 180px;
+    position: fixed;
+    top: 60px;
+    left: 0;
+    background-color: #404b61;
+    /*background-color: transparent;*/
+    transition: 0.5s ease;
+    transform: translateX(-180px);
+    z-index: 150;
+    box-shadow: 2px 0 10px rgba(1, 1, 0, 0);
+    padding-top: 80px;
+}
+
+input {
+    display: none;
+}
+
+.toggle {
+    position: absolute;
+    height: 30px;
+    width: 30px;
+    top: 20px;
+    left: 20px;
+    cursor: pointer;
+    border-radius: 2px;
+    background-color: #404b61;
+    box-shadow: 2px 0 10px rgba(0,0,0,0.3);
+}
+
+.toggle .common {
+    position: absolute;
+    height: 2px;
+    width: 20px;
+    background-color: #fff;
+    border-radius: 50px;
+    transition: 0.4s ease;
+}
+
+.toggle .top_line {
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.toggle .middle_line {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.toggle .bottom_line {
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+#menu-toggle:checked ~ .toggle .top_line {
+    left: 2px;
+    top: 14px;
+    width: 25px;
+    transform: rotate(45deg);
+}
+
+#menu-toggle:checked ~ .toggle .bottom_line {
+    left: 2px;
+    top: 14px;
+    width: 25px;
+    transform: rotate(-45deg);
+}
+
+#menu-toggle:checked ~ .toggle .middle_line {
     opacity: 0;
-    animation: slideRight 1s ease forwards;
+    transform: translateX(20px);
+}
+
+#menu-toggle:checked ~ .slide {
+    transform: translateX(0);
+}
+
+.navbar ul {
+    list-style: none;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.navbar ul li {
+    margin: 15px 0;
+    display: flex;
+    padding-left: 18px;
+    gap: 0.125rem;
 }
 
 .navbar a {
-    display: inline-block;
+    padding: 5px 0;
     font-size: 18px;
     color: #fff;
     text-decoration: none;
     font-weight: 600;
-    margin-left: 35px;
     transition: .3s;
     opacity: 0;
     animation: slideTop .5s ease forwards;
     animation-delay: calc(.1s * var(--i));
-}   
+} 
 
 .navbar a:hover,
 .navbar a.active {
-    color: #0ef;
+    color: #c0752f;
 }
 
 .home {
-    position: relative;
-    width: 100%;
+    margin-left: 70px;
+    padding: 70px 10%; 
     height: 100vh;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 70px 15% 0;
+    position: absolute;
+    right: 0;
 }
 
 .home-content {
@@ -66,8 +171,8 @@ body {
 }
 
 .home-content h3 {
-    font-size: 32px;
-    font-weight: 700;
+    font-size: 30px;
+    font-weight: 300;
     opacity: 0;
     animation: slideBbottam 1s ease forwards;
     animation-delay: .7s;
@@ -84,8 +189,8 @@ body {
 }
 
 .home-content h1 {
-    font-size: 56px;
-    font-weight: 700;
+    font-size: 40px;
+    font-weight: 600;
     margin: 3px 0;
     opacity: 0;
     animation: slideRight 1s ease forwards;
@@ -98,32 +203,46 @@ body {
     animation: slideLeft 1s ease forwards;
     animation-delay: 1s;
 }
+
 .home-img img {
-    max-width: 450px;
+    max-width: 250px;
+    position: fixed;
+    top: 35%;
+    left: 28rem;
     margin-right: -30px;
+    transform: translateY(-50%);
+    color: #0ef;
     opacity: 0;
-    animation: zoomIn 1s ease forwards, floatImage 4s
-    ease-in-out infinite;
-    animation-delay: 2s, 3s;
+    animation: zoomIn 1s ease forwards, floatImage 4s ease-in-out infinite;
+    animation-delay: 1s, 2s;
+}
+
+.back-img  {
+    max-width: 250px;
+    position: fixed;
+    top: 35%;
+    left: 28rem;
+    margin-right: -30px;
+    transform: translateY(-50%);
+    color: #0ef;
+    opacity: 0;
+    animation: zoomIn 1s ease forwards, floatImage 4s ease-in-out infinite;
+    animation-delay: 1s, 2s;
 }
 
 .social-media a {
     display: inline-flex;
-    margin: 8px;
-    padding: 8px;
     justify-content: center;
     align-items: center;
     width: 40px;
     height: 40px;
-    background: transparent;
     border: 2px solid #0ef;
     border-radius: 50%;
-    font-size: 20px;
+    font-size: 16px;
     color: #0ef;
     text-decoration: none;
     margin: 30px 15px 30px 0;
-    transition: .5s ease ;
-    font-size: 16px;
+    transition: .5s ease;
     opacity: 0;
     animation: slideLeft 1s ease forwards;
     animation-delay: calc(.2s * var(--i));
@@ -151,77 +270,33 @@ body {
     animation-delay: 2s;
 }
 
-
 @keyframes slideRight {
-0% {
-    transform: translateX(-100px);
-    opacity: 0;
-   }
-
-   100%{
-    transform: translateX(0);
-    opacity: 1;
-   }
+    0% { transform: translateX(-100px); opacity: 0; }
+    100% { transform: translateX(0); opacity: 1; }
 }
 
 @keyframes slideLeft {
-0% {
-    transform: translateX(100px);
-    opacity: 0;
-   }
-
-   100%{
-    transform: translateX(0);
-    opacity: 1;
-   }
+    0% { transform: translateX(100px); opacity: 0; }
+    100% { transform: translateX(0); opacity: 1; }
 }
 
 @keyframes slideTop {
-    0% {
-        transform: translateY(100px);
-        opacity: 0;
-    }
-    
-    100%{
-        transform: translateY(0);
-        opacity: 1;
-    }
+    0% { transform: translateY(100px); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
 }
 
 @keyframes slideBbottam {
-0% {
-    transform: translateX(-100px);
-    opacity: 0;
-   }
-
-   100%{
-    transform: translateX(0);
-    opacity: 1;
-   }
+    0% { transform: translateX(-100px); opacity: 0; }
+    100% { transform: translateX(0); opacity: 1; }
 }
 
 @keyframes zoomIn {
-    0% {
-        transform: scale(0);
-        opacity: 0;
-    }
-    
-    100%{
-        transform: scale(1);
-        opacity: 1;
-    }
+    0% { transform: scale(0); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
 }
 
 @keyframes floatImage {
-    0% {
-        transform: translateY(0);
-    }
-
-    50% {
-        transform: translateY(-24px);
-    }
-    
-    100%{
-        transform: translateY(0);
-    }
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+    100% { transform: translateY(0); }
 }
